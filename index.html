@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#14181a" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23232b22'/%3E%3Cpath d='M6 22h20l-3-8H11z' fill='%23b7a76a'/%3E%3C/svg%3E" />
+    <title>Iron Sprint</title>
+  </head>
+  <body>
+    <div id="app">
+      <div id="game-container"></div>
+
+      <!-- HUD -->
+      <div id="hud" class="hidden">
+        <div class="hud-block"><span class="hud-label">SCORE</span><span id="hud-score">00000</span></div>
+        <div class="hud-block hud-right"><span class="hud-label">HI</span><span id="hud-high">00000</span></div>
+      </div>
+      <div id="hud-sub" class="hidden">
+        <span class="chip coin-chip"><i class="coin-icon"></i><span id="hud-coins">0</span></span>
+        <span class="chip"><span class="hud-label">LVL</span> <span id="hud-level">1</span></span>
+        <span class="chip mult-chip"><span id="hud-mult">x1</span><span class="mult-bar"><span id="mult-fill"></span></span></span>
+      </div>
+      <div id="level-banner" class="hidden">LEVEL 2</div>
+      <button id="btn-pause" class="icon-btn hidden" aria-label="Pause">II</button>
+      <div id="warning" class="hidden">&#9888; JET INCOMING</div>
+
+      <!-- Loading -->
+      <div id="overlay-loading" class="overlay">
+        <div class="panel">
+          <h2>LOADING</h2>
+          <div class="bar"><div id="loading-bar"></div></div>
+          <p id="loading-text" class="muted">Preparing battlefield...</p>
+        </div>
+      </div>
+
+      <!-- Start -->
+      <div id="overlay-start" class="overlay hidden">
+        <div class="panel">
+          <h1>IRON<span>SPRINT</span></h1>
+          <p class="lead">Jump over tanks. Duck under jets. Dodge trains.<br />Grab coins to raise your score multiplier.</p>
+          <div class="diff-select" role="radiogroup" aria-label="Difficulty">
+            <button class="diff-btn" data-difficulty="easy"><b>EASY</b><small>Slow &middot; x1 points</small></button>
+            <button class="diff-btn" data-difficulty="normal"><b>NORMAL</b><small>Fast &middot; x1.5 points</small></button>
+            <button class="diff-btn" data-difficulty="hard"><b>HARD</b><small>Insane &middot; x2.5 points</small></button>
+          </div>
+          <button id="btn-start" class="btn primary">START</button>
+          <p class="muted keys-hint">
+            <b>&larr; / A</b> <b>&rarr; / D</b> lane &nbsp;&middot;&nbsp; <b>Space / &uarr;</b> jump &nbsp;&middot;&nbsp; <b>&darr; / S</b> duck &nbsp;&middot;&nbsp;
+            <b>P / Esc</b> pause &nbsp;&middot;&nbsp; <b>M</b> mute
+          </p>
+          <p class="muted">Press <b>1 / 2 / 3</b> to pick difficulty &middot; <b>Enter</b> to start</p>
+        </div>
+      </div>
+
+      <!-- Pause -->
+      <div id="overlay-pause" class="overlay hidden">
+        <div class="panel">
+          <h2>PAUSED</h2>
+          <button id="btn-resume" class="btn primary">RESUME</button>
+          <button id="btn-pause-restart" class="btn">RESTART</button>
+        </div>
+      </div>
+
+      <!-- Game over -->
+      <div id="overlay-gameover" class="overlay hidden">
+        <div class="panel">
+          <h2 class="danger">GAME OVER</h2>
+          <div class="results">
+            <div><span class="hud-label">SCORE</span><span id="go-score">00000</span></div>
+            <div><span class="hud-label">BEST</span><span id="go-best">00000</span></div>
+          </div>
+          <div class="results small">
+            <div><span class="hud-label">COINS</span><span id="go-coins">0</span></div>
+            <div><span class="hud-label">DISTANCE</span><span id="go-distance">0 m</span></div>
+            <div><span class="hud-label">LEVEL</span><span id="go-level">1</span></div>
+            <div><span class="hud-label">MODE</span><span id="go-difficulty">NORMAL</span></div>
+          </div>
+          <p id="go-new-best" class="lead hidden">NEW BEST!</p>
+          <button id="btn-restart" class="btn primary">RESTART</button>
+          <button id="btn-menu" class="btn">DIFFICULTY</button>
+          <p class="muted">Press <b>R</b> or <b>Enter</b></p>
+        </div>
+      </div>
+
+      <!-- Touch controls -->
+      <div id="touch-controls" class="hidden">
+        <div class="touch-group">
+          <button id="btn-left" class="touch-btn" aria-label="Move left">&#9664;</button>
+          <button id="btn-right" class="touch-btn" aria-label="Move right">&#9654;</button>
+        </div>
+        <div class="touch-group">
+          <button id="btn-duck" class="touch-btn" aria-label="Duck">DUCK</button>
+          <button id="btn-jump" class="touch-btn" aria-label="Jump">JUMP</button>
+        </div>
+      </div>
+
+      <div id="debug-panel" class="hidden"></div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
